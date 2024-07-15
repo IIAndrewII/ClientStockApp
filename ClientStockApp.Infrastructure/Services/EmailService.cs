@@ -18,7 +18,7 @@ namespace ClientStockApp.Infrastructure.Services
         {
             var apiKey = _configuration["SendGrid:ApiKey"];
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("no-reply@example.com", "Stock Market App");
+            var from = new EmailAddress(_configuration["SendGrid:FromEmail"], "Stock Market App");
             var toEmail = new EmailAddress(to);
             var msg = MailHelper.CreateSingleEmail(from, toEmail, subject, body, body);
             await client.SendEmailAsync(msg);

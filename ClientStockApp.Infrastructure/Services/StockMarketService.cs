@@ -1,36 +1,46 @@
 ﻿using ClientStockApp.Application.Interfaces;
 using ClientStockApp.Domain.Models;
 using ClientStockApp.Infrastructure.Data;
-
+using ClientStockApp.Infrastructure.DTOs;
+using Microsoft.Extensions.Configuration;
+using System.Text.Json;
 
 namespace ClientStockApp.Infrastructure.Services
 {
     public class StockMarketService : IStockMarketService
     {
         private readonly ApplicationDbContext _context;
-        private readonly System.Net.Http.IHttpClientFactory _httpClientFactory;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IConfiguration _configuration;
 
-        public StockMarketService(ApplicationDbContext context, System.Net.Http.IHttpClientFactory httpClientFactory)
+        public StockMarketService(ApplicationDbContext context, IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _context = context;
             _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
         }
 
         public async Task FetchStockMarketDataAsync()
         {
+            var apiKey = _configuration["Polygon:ApiKey"];
+            var ticker = _configuration["Polygon:Ticker"];
             var httpClient = _httpClientFactory.CreateClient();
-            var response = await httpClient.GetStringAsync("https://api.polygon.io/v2/aggs/ticker/AAPL/prev?apiKey=YOUR_API_KEY");
+            var responseString = await httpClient.GetStringAsync($"https://api.polygon.io/v2/aggs/ticker/{ticker}/prev?apiKey={apiKey}");
 
-            // Parse and save the data to the database
-            var stockData = new StockMarketData
+            var response = JsonSerializer.Deserialize<PolygonApiResponse>(responseString);
+
+            if (response != null && response.Results.Any())
             {
-                Symbol = "AAPL",
-                Price = decimal.Parse(response), // Simplified parsing, adjust as necessary
-                Timestamp = DateTime.UtcNow
-            };
+                var stockData = new StockMarketData
+                {
+                    Symbol = response.Ticker,
+                    Price = response.Results.First().C, // Close price
+                    Timestamp = DateTime.UtcNow
+                };
 
-            _context.StockMarketData.Add(stockData);
-            await _context.SaveChangesAsync();
+                _context.StockMarketData.Add(stockData);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

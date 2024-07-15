@@ -3,21 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientStockApp.Presentation", "ClientStockApp.Presentation\ClientStockApp.Presentation.csproj", "{634BD134-AF93-4A22-BBA1-843D505B00CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientStockApp.Presentation", "ClientStockApp.Presentation\ClientStockApp.Presentation.csproj", "{634BD134-AF93-4A22-BBA1-843D505B00CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientStockApp.Application", "ClientStockApp.Application\ClientStockApp.Application.csproj", "{B5A32D55-E7FE-47BD-80AE-80F57BA48643}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientStockApp.Application", "ClientStockApp.Application\ClientStockApp.Application.csproj", "{B5A32D55-E7FE-47BD-80AE-80F57BA48643}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientStockApp.Infrastructure", "ClientStockApp.Infrastructure\ClientStockApp.Infrastructure.csproj", "{96D0B26E-8E17-46DB-92B2-18E17542BCE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientStockApp.Infrastructure", "ClientStockApp.Infrastructure\ClientStockApp.Infrastructure.csproj", "{96D0B26E-8E17-46DB-92B2-18E17542BCE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientStockApp.Domain", "ClientStockApp.Domain\ClientStockApp.Domain.csproj", "{3D5343AF-C9FB-49B7-8B3F-102BDB943E71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientStockApp.Domain", "ClientStockApp.Domain\ClientStockApp.Domain.csproj", "{3D5343AF-C9FB-49B7-8B3F-102BDB943E71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientStockApp.Client", "ClientStockApp.Client\ClientStockApp.Client.csproj", "{A9D82B68-DA7D-40B1-8DB2-005D423CF344}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{634BD134-AF93-4A22-BBA1-843D505B00CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -36,5 +35,15 @@ Global
 		{3D5343AF-C9FB-49B7-8B3F-102BDB943E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D5343AF-C9FB-49B7-8B3F-102BDB943E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D5343AF-C9FB-49B7-8B3F-102BDB943E71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9D82B68-DA7D-40B1-8DB2-005D423CF344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9D82B68-DA7D-40B1-8DB2-005D423CF344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9D82B68-DA7D-40B1-8DB2-005D423CF344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9D82B68-DA7D-40B1-8DB2-005D423CF344}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E4DECD3C-E106-4CA2-AC38-4D1AA0F7B13A}
 	EndGlobalSection
 EndGlobal

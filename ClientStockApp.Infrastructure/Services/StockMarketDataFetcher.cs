@@ -1,6 +1,7 @@
 ﻿using ClientStockApp.Application.Interfaces;
 using ClientStockApp.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -9,16 +10,19 @@ namespace ClientStockApp.Infrastructure.Services
     public class StockMarketDataFetcher : IHostedService, IDisposable
     {
         private readonly IServiceProvider _serviceProvider;
+        private readonly IConfiguration _configuration;
         private Timer _timer;
 
-        public StockMarketDataFetcher(IServiceProvider serviceProvider)
+        public StockMarketDataFetcher(IServiceProvider serviceProvider, IConfiguration configuration)
         {
             _serviceProvider = serviceProvider;
+            _configuration = configuration;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromHours(6));
+            // _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromHours(6));
+            _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromMinutes(1)); // For testing
             return Task.CompletedTask;
         }
 
@@ -34,10 +38,11 @@ namespace ClientStockApp.Infrastructure.Services
 
                 var clients = await context.Clients.ToListAsync();
                 var stockData = await context.StockMarketData.OrderByDescending(s => s.Timestamp).FirstOrDefaultAsync();
+                var ticker = _configuration["Polygon:Ticker"];
 
                 foreach (var client in clients)
                 {
-                    var body = $"Hello {client.FirstName},\n\nThe latest stock price for AAPL is {stockData.Price} as of {stockData.Timestamp}.\n\nBest regards,\nStock Market App";
+                    var body = $"Hello {client.FirstName},\n\nThe latest stock price for {ticker} is {stockData.Price} as of {stockData.Timestamp}.\n\nBest regards,\nStock Market App";
                     await emailService.SendEmailAsync(client.Email, "Stock Market Update", body);
                 }
             }
