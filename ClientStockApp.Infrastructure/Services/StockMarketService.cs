@@ -2,6 +2,7 @@
 using ClientStockApp.Domain.Models;
 using ClientStockApp.Infrastructure.Data;
 using ClientStockApp.Infrastructure.DTOs;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 
@@ -41,6 +42,10 @@ namespace ClientStockApp.Infrastructure.Services
                 _context.StockMarketData.Add(stockData);
                 await _context.SaveChangesAsync();
             }
+        }
+        public async Task<IEnumerable<StockMarketData>> GetStockPricesAsync()
+        {
+            return await _context.StockMarketData.ToListAsync();
         }
     }
 }

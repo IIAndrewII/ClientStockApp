@@ -1,34 +1,20 @@
-<form [formGroup]="clientForm" (ngSubmit)="save()" class="edit-form">
-    <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName" formControlName="firstName" class="k-textbox" />
-        <div *ngIf="clientForm.get('firstName').invalid && clientForm.get('firstName').touched" class="error">
-            First Name is required.
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" formControlName="lastName" class="k-textbox" />
-        <div *ngIf="clientForm.get('lastName').invalid && clientForm.get('lastName').touched" class="error">
-            Last Name is required.
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" formControlName="email" class="k-textbox" />
-        <div *ngIf="clientForm.get('email').invalid && clientForm.get('email').touched" class="error">
-            <div *ngIf="clientForm.get('email').errors.required">Email is required.</div>
-            <div *ngIf="clientForm.get('email').errors.email">Invalid email format.</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="phoneNumber">Phone Number</label>
-        <input type="text" id="phoneNumber" formControlName="phoneNumber" class="k-textbox" />
-        <div *ngIf="clientForm.get('phoneNumber').invalid && clientForm.get('phoneNumber').touched" class="error">
-            <div *ngIf="clientForm.get('phoneNumber').errors.required">Phone Number is required.</div>
-            <div *ngIf="clientForm.get('phoneNumber').errors.pattern">Invalid phone number format. Must be 10 digits.</div>
-        </div>
-    </div>
-    <button type="submit" class="k-button k-primary" [disabled]="clientForm.invalid">Save</button>
-    <button type="button" class="k-button" (click)="cancel()">Cancel</button>
+<form class="edit-form">
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" name="firstName" [(ngModel)]="client.firstName" class="k-textbox" />
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" name="lastName" [(ngModel)]="client.lastName" class="k-textbox" />
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" [(ngModel)]="client.email" class="k-textbox" />
+  </div>
+  <div class="form-group">
+    <label for="phoneNumber">Phone Number</label>
+    <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="client.phoneNumber" class="k-textbox" />
+  </div>
+  <button class="k-button k-primary" (click)="save()">Save</button>
+  <button class="k-button" (click)="cancel()">Cancel</button>
 </form>

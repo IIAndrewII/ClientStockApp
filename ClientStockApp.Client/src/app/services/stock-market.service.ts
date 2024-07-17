@@ -7,7 +7,7 @@ import { StockMarketData } from '../models/stock-market-data.model';
   providedIn: 'root'
 })
 export class StockMarketService {
-  private apiUrl = 'https://localhost:7105/api/stockmarketdata';
+  private apiUrl = 'https://localhost:7105/api/StockPrice';
 
   constructor(private http: HttpClient) { }
 
