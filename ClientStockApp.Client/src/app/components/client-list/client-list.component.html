@@ -1,0 +1,14 @@
+<div>
+  <kendo-grid [data]="gridData" [pageSize]="pageSize" [skip]="skip" [pageable]="true" (pageChange)="pageChange($event)">
+    <kendo-grid-column field="firstName" title="First Name"></kendo-grid-column>
+    <kendo-grid-column field="lastName" title="Last Name"></kendo-grid-column>
+    <kendo-grid-column field="email" title="Email"></kendo-grid-column>
+    <kendo-grid-column field="phoneNumber" title="Phone Number"></kendo-grid-column>
+    <kendo-grid-command-column title="Actions" [width]="220">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <button kendoGridRemoveCommand (click)="deleteClient(dataItem.id)" class="k-button k-grid-remove-command">Delete</button>
+            <button kendoGridRemoveCommand (click)="editClient(dataItem.id)" class="k-button k-grid-remove-command">Edit</button>
+        </ng-template>
+    </kendo-grid-command-column>
+  </kendo-grid>
+</div>

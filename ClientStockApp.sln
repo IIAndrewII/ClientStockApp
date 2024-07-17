@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientStockApp.Infrastructu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientStockApp.Domain", "ClientStockApp.Domain\ClientStockApp.Domain.csproj", "{3D5343AF-C9FB-49B7-8B3F-102BDB943E71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientStockApp.Client", "ClientStockApp.Client\ClientStockApp.Client.csproj", "{A9D82B68-DA7D-40B1-8DB2-005D423CF344}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{3D5343AF-C9FB-49B7-8B3F-102BDB943E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D5343AF-C9FB-49B7-8B3F-102BDB943E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D5343AF-C9FB-49B7-8B3F-102BDB943E71}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A9D82B68-DA7D-40B1-8DB2-005D423CF344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A9D82B68-DA7D-40B1-8DB2-005D423CF344}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A9D82B68-DA7D-40B1-8DB2-005D423CF344}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A9D82B68-DA7D-40B1-8DB2-005D423CF344}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

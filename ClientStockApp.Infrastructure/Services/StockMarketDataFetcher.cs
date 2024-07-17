@@ -21,8 +21,8 @@ namespace ClientStockApp.Infrastructure.Services
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            // _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromHours(6));
-            _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromMinutes(1)); // For testing
+            _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromHours(6));
+            // _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromMinutes(1)); // For testing
             return Task.CompletedTask;
         }
 
