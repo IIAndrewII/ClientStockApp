@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientService } from '../../services/client.service';
 import { Client } from '../../models/client.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-client-edit-form',
@@ -10,12 +11,22 @@ import { Client } from '../../models/client.model';
 })
 export class ClientEditFormComponent implements OnInit {
   client: Client = { id: 0, firstName: '', lastName: '', email: '', phoneNumber: '' };
+  clientForm: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private clientService: ClientService
-  ) { }
+  ) {
+    this.clientForm = this.fb.group({
+      id: [0],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]]
+    });
+}
 
   ngOnInit(): void {
     // Accessing the id parameter safely
